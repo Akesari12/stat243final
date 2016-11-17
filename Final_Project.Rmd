@@ -1,6 +1,15 @@
 ---
-title: "Final Project"
-output: pdf_document
+title: "Statistics 243 Final project"
+author: "Renata Barreto-Montenegro, Aniket Kesari, Aziz Khiyami, AbdulRahman Kreidieh"
+date: "June 15, 2016"
+output:
+  pdf_document:
+    citation_package: biblatex
+    fig_caption: yes
+    keep_tex: yes
+    latex_engine: xelatex
+    number_sections: yes
+  word_document: default
 ---
 
 ## Main Function
