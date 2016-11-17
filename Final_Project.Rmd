@@ -12,7 +12,7 @@ output:
   word_document: default
 ---
 
-## Main Function
+# Main Function
 
 ```{r}
 mfa <- function(data, sets, ncomps = NULL, center = TRUE, scale = TRUE) {
@@ -118,7 +118,7 @@ mfa <- function(data, sets, ncomps = NULL, center = TRUE, scale = TRUE) {
 ```
 
 
-## Printing and Plotting
+# Printing and Plotting
 
 ```{r}
 # print function
@@ -170,7 +170,7 @@ plot.mfa <- function(x, factor_text = NULL, load_text = NULL, table_text = NULL,
 ```
 
 
-## Summaries of Eigenvalues
+# Summaries of Eigenvalues
 
 ```{r}
 summaries_of_eigenvalues <- function(object, ...) UseMethod('summaries_of_eigenvalues')
@@ -190,9 +190,9 @@ summaries_of_eigenvalues.mfa <- function(object) {
 ```
 
 
-## Contributions
+# Contributions
 
-### Contribution of Observation to a Given Dimension
+## Contribution of Observation to a Given Dimension
 
 ```{r}
 contribution_of_observation <- function(object, ...) UseMethod(contribution_of_observation)
@@ -207,7 +207,7 @@ contribution_of_observation.mfa <- function(object, observation_num, dim_num) {
 }
 ```
 
-### Contribution of Variable to a Given Dimension
+## Contribution of Variable to a Given Dimension
 
 ```{r}
 contribution_of_variable <- function(object, ...) UseMethod(contribution_of_variable)
@@ -220,7 +220,7 @@ contribution_of_variable.mfa <- function(object, variable_num, dim_num) {
 }
 ```
 
-### Contribution of Table to a Given Dimension
+## Contribution of Table to a Given Dimension
 
 ```{r}
 contribution_of_table <- function(object, ...) UseMethod(contribution_of_table)
@@ -236,9 +236,9 @@ contribution_of_table.mfa <- function(object, table_num, dim_num) {
 ```
 
 
-## Coefficients
+# Coefficients
 
-### RV Coefficient
+## RV Coefficient
 
 ```{r}
 Rv_coefficient <- function(dataset, sets) {
@@ -268,7 +268,7 @@ RV_table <- function(dataset, sets) {
 }
 ```
 
-### Lg Coefficient
+## Lg Coefficient
 
 ```{r}
 Lg_coefficient <- function(dataset, sets) {
