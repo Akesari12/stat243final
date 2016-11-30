@@ -4,7 +4,6 @@ author: "Renata Barreto-Montenegro, Aniket Kesari, Aziz Khiyami, AbdulRahman Kre
 date: "June 15, 2016"
 output:
   pdf_document:
-    citation_package: biblatex
     fig_caption: yes
     keep_tex: yes
     latex_engine: xelatex
@@ -16,18 +15,19 @@ output:
 
 ```{r}
 mfa <- function(data, sets, ncomps = NULL, center = TRUE, scale = TRUE) {
-  if (class(data)!="matrix" && class(data)!="data.frame") {
+  # Stop condition
+  if (class(data)!="matrix" && class(data)!="data.frame") { 
     stop('data must be of class "matrix" or "data.frame"')
   }
   
   # remove NA's
   data = na.omit(data)
   
-  indeces = c()
+  indices = c()
   for (i in 1:length(sets)) {
-    indeces = c(indeces, sets[[i]])
+    indices = c(indices, sets[[i]])
   }
-  dat = data[,indeces]
+  dat = data[,indices]
   
   # center and scale if requested
   if (scale) {
@@ -117,13 +117,41 @@ mfa <- function(data, sets, ncomps = NULL, center = TRUE, scale = TRUE) {
 }
 ```
 
+## Test MFA function
+```{r}
+require(RCurl)
+data <- read.csv(text=getURL('https://raw.githubusercontent.com/ucb-stat243/stat243-fall-2016/master/problem-sets/final-project/data/wines.csv'))
+
+# write.csv(data, file="wines.csv")
+
+colnames(data) <- c("ID", "cat pee", "passion fruit", "green pepper", "mineral", "smoky", "citrus", "tropical", "leafy", "grassy", "flinty", "vegetal", "hay", "melon", "grass", "peach", "titratable acid", "pH", "alcohol", "res_sugar")
+
+arrays <- list(c(2:7), c(8:13), c(14:19), c(20:24), c(25:30), c(31:35), c(36:39), c(40:45), c(46:50), c(51:54))
+
+winescores <- mfa(data, arrays)
+```
 
 # Printing and Plotting
 
 ```{r}
 # print function
-print.mfa <- function(x, ...) {
-  print("Hello world")
+print.mfa <- function(mfa, ...) {
+  cat(mfa$common_factor_scores) # Prints the compromise
+  cat(mfa$partial_factor_scores) # Prints the partial factor scores
+  cat(mfa$factor_loadings) # Prints the variable loadings
+  invisible(mfa)
+}
+
+print.mfa.compromise <- function(mfa,...) {
+  print(mfa$common_factor_scores)
+}
+
+print.mfa.fpart <- function(mfa,...) {
+  print(mfa$partial_factor_scores)
+}
+
+print.mfa.factor.load <- function(mfa,...) {
+  print(mfa$factor_loadings)
 }
 
 # plot function
